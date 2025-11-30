@@ -1,8 +1,11 @@
-use std::path::PathBuf;
+use std::{path::PathBuf, process::Command};
 
 use anyhow::Result;
 use tokio::fs;
 use which::which;
+
+const TAILWIND_INPUT: &str = "tailwind.css";
+const TAILWIND_OUTPUT: &str = "assets/tailwind.css";
 
 const TAILWIND: &str = "tailwindcss";
 const TAILWIND_VSN: &str = "v4.1.17";
@@ -88,6 +91,15 @@ async fn main() {
     let prog_path = locate_tw()
         .await
         .expect("Failed to locate or download Tailwind CSS CLI");
+
+    let status = Command::new(&prog_path)
+        .args(["-i", TAILWIND_INPUT, "-o", TAILWIND_OUTPUT, "--minify"])
+        .status()
+        .expect("Failed to execute Tailwind CSS CLI");
+
+    if !status.success() {
+        panic!("Tailwind CSS CLI failed with status: {}", status);
+    }
 
     println!("cargo:warning=Tailwind CSS CLI found at {:?}", prog_path);
 }
