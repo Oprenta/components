@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-pub const COMPONENT: Asset = asset!("assets/tailwind.css");
+pub const COMPONENT_STYLES: Asset = asset!("assets/tailwind.css");
 
 pub fn card() -> Element {
     rsx! {
