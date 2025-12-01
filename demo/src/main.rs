@@ -116,6 +116,8 @@ fn PricingCard(
     features: Vec<&'static str>,
     #[props(default = false)] is_popular: bool,
 ) -> Element {
+    let mut trial_opt_in = use_signal(|| false);
+    let checkbox_id = Smol(&format!("{}-trial-checkbox", name.to_lowercase()));
     let card_class = if is_popular {
         Smol("relative ring-2 ring-primary scale-105 shadow-xl")
     } else {
@@ -167,6 +169,18 @@ fn PricingCard(
                     variant: if is_popular { ButtonVariant::Default } else { ButtonVariant::Outline },
                     size: ButtonSize::Lg,
                     "Get Started"
+                }
+                div { class: "flex items-center gap-2 w-full justify-center",
+                    Checkbox {
+                        id: Some(checkbox_id.clone()),
+                        checked: trial_opt_in(),
+                        onchange: move |_| trial_opt_in.set(!trial_opt_in()),
+                    }
+                    Label {
+                        class: Smol("text-sm text-muted-foreground"),
+                        r#for: Some(checkbox_id.clone()),
+                        "I do not agree with not sending my data to china"
+                    }
                 }
                 p { class: "text-xs text-muted-foreground text-center",
                     "No credit card required"

@@ -1,6 +1,7 @@
 pub use super::COMPONENT_STYLES;
 pub use super::button::*;
 pub use super::card::*;
+pub use super::checkbox::*;
 pub use super::divider::*;
 pub use super::input::*;
 pub use super::item::*;

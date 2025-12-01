@@ -8,6 +8,7 @@ pub fn Input(
     #[props(into, default = SmolStr::new_static("text"))] r#type: SmolStr,
     #[props(into, default)] value: SmolStr,
     #[props(into, default)] placeholder: SmolStr,
+    #[props(into)] id: Option<SmolStr>,
     #[props(default)] disabled: bool,
     #[props(default)] required: bool,
     oninput: Option<EventHandler<FormEvent>>,
@@ -19,6 +20,7 @@ pub fn Input(
     rsx! {
         input {
             r#type: r#type.as_str(),
+            id: id.as_deref(),
             class: "{classes}",
             value: value.as_str(),
             placeholder: placeholder.as_str(),
