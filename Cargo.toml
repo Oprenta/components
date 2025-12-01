@@ -22,6 +22,8 @@ members = ["demo"]
 resolver = "3"
 
 [workspace.dependencies]
+oprenta_components = { path = "." }
+
 smol_str = "0.3.4"
 dioxus = "^0.7"
-oprenta_components = { path = "." }
+dioxus-free-icons = "0.10.0"

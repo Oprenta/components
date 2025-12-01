@@ -1,4 +1,6 @@
 use dioxus::prelude::*;
+use dioxus_free_icons::icons::fi_icons::*;
+use dioxus_free_icons::Icon;
 use oprenta_components::prelude::*;
 
 fn main() {
@@ -16,9 +18,19 @@ fn App() -> Element {
             mode: theme(),
 
             div { class: "min-h-screen bg-background text-foreground p-8",
-                // Header with theme toggle
+                // Header with navbar and theme toggle
                 div { class: "flex justify-between items-center mb-12",
-                    div {}
+                    // Navbar with vertical dividers
+                    nav { class: "flex items-center gap-4 h-10",
+                        a { class: "text-sm font-medium hover:text-primary transition-colors", href: "#", "Home" }
+                        Divider { orientation: DividerOrientation::Vertical }
+                        a { class: "text-sm font-medium hover:text-primary transition-colors", href: "#", "Pricing" }
+                        Divider { orientation: DividerOrientation::Vertical }
+                        a { class: "text-sm font-medium hover:text-primary transition-colors", href: "#", "Features" }
+                        Divider { orientation: DividerOrientation::Vertical }
+                        a { class: "text-sm font-medium hover:text-primary transition-colors", href: "#", "Contact" }
+                    }
+
                     Button {
                         variant: ButtonVariant::Outline,
                         size: ButtonSize::Sm,
@@ -28,15 +40,18 @@ fn App() -> Element {
                 }
 
                 // Pricing page header
-                div { class: "text-center mb-16",
+                div { class: "text-center mb-8",
                     h1 { class: "text-5xl font-bold mb-4", "Choose Your Plan" }
                     p { class: "text-xl text-muted-foreground max-w-2xl mx-auto",
                         "Select the perfect plan for your needs. All plans include a 14-day free trial."
                     }
                 }
 
+                // Divider
+                Divider { class: Smol("mb-16") }
+
                 // Pricing cards grid
-                div { class: "grid gap-8 md:grid-cols-3 max-w-7xl mx-auto",
+                div { class: "grid gap-8 md:grid-cols-3 max-w-7xl mx-auto mt-8",
                     PricingCard {
                         name: "Starter",
                         price: "$9",
@@ -136,17 +151,9 @@ fn PricingCard(
                 ul { class: "space-y-3",
                     for feature in features {
                         li { class: "flex items-start gap-3",
-                            // Checkmark icon
-                            svg {
-                                class: "w-5 h-5 text-primary flex-shrink-0 mt-0.5",
-                                xmlns: "http://www.w3.org/2000/svg",
-                                view_box: "0 0 20 20",
-                                fill: "currentColor",
-                                path {
-                                    fill_rule: "evenodd",
-                                    d: "M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z",
-                                    clip_rule: "evenodd"
-                                }
+                            Icon {
+                                icon: FiCheck,
+                                class: "w-5 h-5 text-primary flex-shrink-0 mt-0.5"
                             }
                             span { class: "text-sm", "{feature}" }
                         }

@@ -5,5 +5,7 @@ authors = ["Fabrice <fabrice@schaub-dev.xyz>"]
 edition = "2021"
 
 [dependencies]
-dioxus = { version = "0.7.1", features = ["web"] }
 oprenta_components = { workspace = true }
+
+dioxus = { version = "0.7.1", features = ["web"] }
+dioxus-free-icons = { workspace = true, features = ["feather"] }
