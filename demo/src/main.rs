@@ -8,6 +8,8 @@ fn main() {
 #[component]
 fn App() -> Element {
     let mut theme = use_signal(|| ThemeMode::Light);
+    let mut email = use_signal(|| String::new());
+    let mut password = use_signal(|| String::new());
 
     rsx! {
         document::Link { rel: "stylesheet", href: COMPONENT_STYLES}
@@ -17,10 +19,42 @@ fn App() -> Element {
 
             div { class: "min-h-screen bg-background text-foreground p-8",
                 div { class: "flex justify-between items-center mb-8",
-                    h1 { class: "text-4xl font-bold", "Card Component Demo" }
+                    h1 { class: "text-4xl font-bold", "Component Demo" }
                     Button {
                         onclick: move |_| theme.set(theme().toggle()),
                         "Toggle Theme"
+                    }
+                }
+
+                Card { class: Smol("max-w-md mb-8"),
+                    CardHeader {
+                        CardTitle { "Login" }
+                        CardDescription { "Enter your credentials to continue" }
+                    }
+                    CardContent {
+                        div { class: "space-y-4",
+                            div { class: "space-y-2",
+                                Label { r#for: Smol("email"), "Email" }
+                                Input {
+                                    r#type: Smol("email"),
+                                    placeholder: Smol("name@example.com"),
+                                    value: "{email}",
+                                    oninput: move |evt: FormEvent| email.set(evt.value().clone())
+                                }
+                            }
+                            div { class: "space-y-2",
+                                Label { r#for: Smol("password"), "Password" }
+                                Input {
+                                    r#type: Smol("password"),
+                                    placeholder: Smol("Enter your password"),
+                                    value: "{password}",
+                                    oninput: move |evt: FormEvent| password.set(evt.value().clone())
+                                }
+                            }
+                        }
+                    }
+                    CardFooter {
+                        Button { class: Smol("w-full"), "Sign In" }
                     }
                 }
 
@@ -84,7 +118,7 @@ fn App() -> Element {
                         }
                     }
                     CardFooter {
-                        Button { class: "mr-2", "Save" }
+                        Button { class: Smol("mr-2"), "Save" }
                         Button { variant: ButtonVariant::Outline, "Cancel" }
                     }
                 }

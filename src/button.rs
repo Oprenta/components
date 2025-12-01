@@ -1,4 +1,5 @@
 use dioxus::prelude::*;
+use smol_str::SmolStr;
 
 // Base button styles
 const BUTTON_BASE: &str = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]";
@@ -74,14 +75,14 @@ pub fn Button(
     #[props(default)] size: ButtonSize,
     #[props(default)] disabled: bool,
     onclick: Option<EventHandler<MouseEvent>>,
-    class: Option<String>,
+    class: Option<SmolStr>,
 ) -> Element {
     let classes = format!(
         "{} {} {} {}",
         BUTTON_BASE,
         variant.classes(),
         size.classes(),
-        class.unwrap_or_default()
+        class.as_deref().unwrap_or("")
     );
 
     rsx! {
