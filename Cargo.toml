@@ -1,16 +1,25 @@
 [package]
+edition = "2024"
 name = "oprenta_components"
 version = "0.1.0"
-edition = "2024"
 build = "build.rs"
 
 [dependencies]
 dioxus = "^0.7"
 
 [build-dependencies]
+anyhow = "1.0.100"
+reqwest = "0.12.24"
 which = "8.0.0"
 
-anyhow = "1.0.100"
+[build-dependencies.tokio]
+version = "1.48.0"
+features = ["rt-multi-thread", "macros", "fs"]
 
-reqwest = "0.12.24"
-tokio = { version = "1.48.0", features = ["rt-multi-thread", "macros", "fs"] }
+[workspace]
+members = ["demo"]
+resolver = "3"
+
+[workspace.dependencies]
+dioxus = "^0.7"
+oprenta_components = { path = "." }
