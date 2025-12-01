@@ -18,8 +18,7 @@ fn App() -> Element {
             div { class: "min-h-screen bg-background text-foreground p-8",
                 div { class: "flex justify-between items-center mb-8",
                     h1 { class: "text-4xl font-bold", "Card Component Demo" }
-                    button {
-                        class: "px-4 py-2 bg-primary text-primary-foreground rounded-md",
+                    Button {
                         onclick: move |_| theme.set(theme().toggle()),
                         "Toggle Theme"
                     }
@@ -48,9 +47,7 @@ fn App() -> Element {
                         p { "This card includes a footer section below." }
                     }
                     CardFooter {
-                        button { class: "px-4 py-2 bg-primary text-primary-foreground rounded-md",
-                            "Action"
-                        }
+                        Button { "Action" }
                     }
                 }
 
@@ -60,7 +57,7 @@ fn App() -> Element {
                         CardTitle { "Card with Action" }
                         CardDescription { "This card has an action button in the header" }
                         CardAction {
-                            button { class: "px-3 py-1 text-sm border rounded-md", "More" }
+                            Button { variant: ButtonVariant::Outline, size: ButtonSize::Sm, "More" }
                         }
                     }
                     CardContent {
@@ -74,7 +71,7 @@ fn App() -> Element {
                         CardTitle { "Complete Card" }
                         CardDescription { "Showcasing all card components" }
                         CardAction {
-                            button { class: "px-3 py-1 text-sm border rounded-md", "Edit" }
+                            Button { variant: ButtonVariant::Outline, size: ButtonSize::Sm, "Edit" }
                         }
                     }
                     CardContent {
@@ -87,12 +84,8 @@ fn App() -> Element {
                         }
                     }
                     CardFooter {
-                        button { class: "px-4 py-2 bg-primary text-primary-foreground rounded-md mr-2",
-                            "Save"
-                        }
-                        button { class: "px-4 py-2 border rounded-md",
-                            "Cancel"
-                        }
+                        Button { class: "mr-2", "Save" }
+                        Button { variant: ButtonVariant::Outline, "Cancel" }
                     }
                 }
             }
