@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use oprenta_components::{self as oc, COMPONENT_STYLES};
+use oprenta_components::prelude::*;
 
 fn main() {
     dioxus::launch(App);
