@@ -3,9 +3,9 @@ use smol_str::SmolStr;
 
 const CHECKBOX_WRAPPER: &str =
     "relative inline-flex h-4 w-4 items-center justify-center align-middle";
-const CHECKBOX_INPUT: &str = "peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none rounded-[4px] opacity-0 focus-visible:outline-none disabled:cursor-not-allowed";
-const CHECKBOX_BOX: &str = "pointer-events-none inline-flex h-4 w-4 items-center justify-center border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none peer-focus-visible:border-ring peer-focus-visible:ring-ring/50 peer-focus-visible:ring-[3px] aria-[invalid=true]:ring-destructive/20 dark:aria-[invalid=true]:ring-destructive/40 aria-[invalid=true]:border-destructive peer-disabled:cursor-not-allowed peer-disabled:opacity-50";
-const CHECKBOX_INDICATOR: &str = "pointer-events-none hidden";
+const CHECKBOX_INPUT: &str = "peer absolute inset-0 cursor-pointer appearance-none opacity-0 disabled:cursor-not-allowed";
+const CHECKBOX_BOX: &str = "inline-flex h-4 w-4 items-center justify-center border border-input rounded shrink-0 data-[state=checked]:bg-primary data-[state=checked]:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-ring/20 peer-disabled:opacity-50";
+const CHECKBOX_INDICATOR: &str = "hidden";
 
 #[component]
 pub fn Checkbox(

@@ -51,7 +51,7 @@ fn App() -> Element {
                 Divider { class: Smol("mb-16") }
 
                 // Pricing cards grid
-                div { class: "grid gap-8 md:grid-cols-3 max-w-7xl mx-auto mt-8",
+                div { class: "grid-responsive-3 gap-responsive max-w-7xl mx-auto mt-8",
                     PricingCard {
                         name: "Starter",
                         price: "$9",
