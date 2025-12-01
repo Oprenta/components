@@ -2,7 +2,6 @@
 edition = "2024"
 name = "oprenta_components"
 version = "0.1.0"
-build = "build.rs"
 
 [dependencies]
 dioxus = { workspace = true }
